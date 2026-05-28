@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #667eea, #f093fb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    color: white;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 4px solid #00d9ff;
+    font-size: 1.5rem;
+}
+
+.comparison-grid, .login-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.vulnerable {
+    border-top: 5px solid #dc3545;
+}
+
+.secure {
+    border-top: 5px solid #28a745;
+}
+
+.demo-area input, .login-grid input, .weak-password-demo input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.demo-area input:focus, .login-grid input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.02);
+}
+
+.reset-btn {
+    background: #dc3545;
+    margin-top: 15px;
+}
+
+.reset-btn:hover {
+    background: #c82333;
+}
+
+.database-view {
+    background: #1e1e2e;
+    color: #fff;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.database-view table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.database-view th, .database-view td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.database-view th {
+    background: #2d2d3d;
+    color: #00d9ff;
+}
+
+.warning {
+    background: #ffebee;
+    color: #c62828;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 4px solid #c62828;
+    font-size: 13px;
+}
+
+.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 4px solid #2e7d32;
+    font-size: 13px;
+}
+
+.result-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.result-message.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.result-message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.step-hint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #667eea;
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: right;
+}
+
+.step-hint:hover {
+    color: #764ba2;
+}
+
+.strength-meter {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.strength-meter .fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.strength-text {
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+.hash-output {
+    margin-top: 20px;
+}
+
+.hash-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.hash-label {
+    font-weight: 600;
+    min-width: 180px;
+    font-size: 13px;
+}
+
+.hash-row code {
+    flex: 1;
+    word-break: break-all;
+    font-size: 11px;
+    color: #d63384;
+}
+
+.fixed-hash {
+    color: #0d6efd;
+}
+
+.changing-hash {
+    color: #20c997;
+}
+
+.info-icon {
+    cursor: help;
+    color: #6c757d;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.info {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.checklist {
+    padding: 20px;
+}
+
+.checklist-columns ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+}
+
+.checklist li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #dc3545;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .comparison-grid, .login-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hash-row {
+        flex-direction: column;
+    }
+    
+    .hash-label {
+        min-width: auto;
+    }
+}

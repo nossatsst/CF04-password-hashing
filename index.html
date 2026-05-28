@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Fortress CF04 - Password Hashing Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Password Hashing & <span class="highlight">Weak Password</span></h1>
+            <p class="subtitle">Cyber Fortress - FIT4012 | Demo an toàn trên trình duyệt</p>
+        </header>
+
+        <!-- PHẦN 1: SO SÁNH PLAIN TEXT VS HASH -->
+        <section class="section">
+            <h2>📊 1. So sánh: Plain Text vs Hash (bcrypt)</h2>
+            <div class="comparison-grid">
+                <div class="card vulnerable">
+                    <h3>❌ BẢN LỖI - Plain Text</h3>
+                    <div class="demo-area">
+                        <input type="text" id="plain-username" placeholder="Tên đăng nhập" value="alice">
+                        <input type="password" id="plain-password" placeholder="Mật khẩu" value="123456">
+                        <div class="button-group">
+                            <button onclick="savePlainText()">💾 Đăng ký</button>
+                            <button onclick="showPlainDatabase()">👁️ Xem Database</button>
+                        </div>
+                        <div id="plain-database" class="database-view"></div>
+                        <div class="warning">
+                            ⚠️ <strong>Nguy hiểm:</strong> Mật khẩu lưu dạng chữ rõ, ai xem database cũng thấy!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card secure">
+                    <h3>✅ BẢN AN TOÀN - Hash + Salt</h3>
+                    <div class="demo-area">
+                        <input type="text" id="hash-username" placeholder="Tên đăng nhập" value="bob">
+                        <input type="password" id="hash-password" placeholder="Mật khẩu" value="MySecureP@ss123">
+                        <div class="button-group">
+                            <button onclick="saveHash()">🔒 Đăng ký</button>
+                            <button onclick="showHashDatabase()">👁️ Xem Database</button>
+                        </div>
+                        <div id="hash-database" class="database-view"></div>
+                        <div class="success">
+                            ✅ <strong>An toàn:</strong> Mật khẩu đã được hash, không thể đọc ngược!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: DEMO ĐĂNG NHẬP -->
+        <section class="section">
+            <h2>🔑 2. Demo Đăng Nhập</h2>
+            <div class="login-grid">
+                <div class="card">
+                    <h3>🔓 Đăng nhập bản lỗi</h3>
+                    <input type="text" id="login-plain-user" placeholder="Username">
+                    <input type="password" id="login-plain-pass" placeholder="Password">
+                    <button onclick="loginPlain()">Đăng nhập</button>
+                    <div id="login-plain-result" class="result-message"></div>
+                    <!-- Tooltip giải thích quy trình -->
+                    <div class="step-hint" onclick="showStep('plain')">📖 Xem quy trình xác thực →</div>
+                </div>
+                <div class="card">
+                    <h3>🔒 Đăng nhập bản an toàn</h3>
+                    <input type="text" id="login-hash-user" placeholder="Username">
+                    <input type="password" id="login-hash-pass" placeholder="Password">
+                    <button onclick="loginHash()">Đăng nhập</button>
+                    <div id="login-hash-result" class="result-message"></div>
+                    <div class="step-hint" onclick="showStep('hash')">📖 Xem quy trình xác thực →</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 3: DEMO WEAK PASSWORD (thu gọn hơn) -->
+        <section class="section">
+            <h2>⚠️ 3. Kiểm tra độ mạnh mật khẩu</h2>
+            <div class="card">
+                <div class="weak-password-demo">
+                    <input type="password" id="weakpass-input" placeholder="Nhập mật khẩu cần kiểm tra" oninput="checkPasswordStrength()">
+                    <div id="strength-meter" class="strength-meter"></div>
+                    <div id="strength-text" class="strength-text"></div>
+                    <button onclick="testWeakPassword()">📋 Xem danh sách mật khẩu yếu</button>
+                    <div id="weak-results"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 4: GIẢI THÍCH HASH TRỰC QUAN (đơn giản hóa) -->
+        <section class="section">
+            <h2>🔬 4. Hash hoạt động như thế nào?</h2>
+            <div class="card explain">
+                <input type="text" id="input-text" placeholder="Nhập text bất kỳ để thấy hash..." oninput="demoHash()">
+                <div class="hash-output">
+                    <div class="hash-row">
+                        <span class="hash-label">🔓 Plain text:</span>
+                        <code id="plain-demo">---</code>
+                    </div>
+                    <div class="hash-row">
+                        <span class="hash-label">🔒 SHA-256 (cố định):</span>
+                        <code id="sha256-demo" class="fixed-hash">---</code>
+                    </div>
+                    <div class="hash-row">
+                        <span class="hash-label">🧂 SHA-256 + Salt (bcrypt):</span>
+                        <code id="bcrypt-demo" class="changing-hash">---</code>
+                        <span class="info-icon" title="Mỗi lần refresh sẽ khác nhau nhờ Salt!">ⓘ</span>
+                    </div>
+                </div>
+                <div class="info">
+                    💡 <strong>Quan trọng:</strong> Cùng mật khẩu "123456" nhưng bcrypt cho kết quả KHÁC NHAU mỗi lần nhờ SALT!
+                </div>
+            </div>
+        </section>
+
+        <!-- PHẦN 5: CHECKLIST PHÒNG THỦ -->
+        <section class="section">
+            <h2>🛡️ 5. Checklist phòng thủ</h2>
+            <div class="card checklist">
+                <div class="checklist-columns">
+                    <ul>
+                        <li>✅ <strong>KHÔNG</strong> lưu mật khẩu dạng plain text</li>
+                        <li>✅ Dùng <strong>bcrypt / Argon2</strong> để hash mật khẩu</li>
+                        <li>✅ Luôn thêm <strong>Salt</strong> vào mỗi mật khẩu</li>
+                        <li>✅ Chính sách mật khẩu mạnh (≥8 ký tự, hoa/thường/số/đặc biệt)</li>
+                        <li>✅ Chặn mật khẩu phổ biến: <strong>123456, password, qwerty...</strong></li>
+                        <li>✅ Thêm <strong>Rate Limit</strong> và <strong>MFA</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>🎓 Cyber Fortress - FIT4012 | Demo an toàn, chỉ chạy trên trình duyệt</p>
+            <button class="reset-btn" onclick="resetAllData()">🔄 Reset dữ liệu</button>
+        </footer>
+    </div>
+
+    <!-- Modal nhỏ giải thích quy trình -->
+    <div id="stepModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
