@@ -180,10 +180,6 @@ Dự án này tuân thủ nghiêm ngặt các quy định đạo đức an toàn
 Xem chi tiết tại: ethics-safe-use.md
 
 📧 Liên hệ
-Thành viên	Vai trò	MSSV
-[Họ tên SV1]	Team Leader / Developer	[MSSV]
-[Họ tên SV2]	Security Analyst	[MSSV]
-[Họ tên SV3]	Presenter	[MSSV]
 Giảng viên hướng dẫn: ThS. Nguyễn Văn Nhân & ThS. Lê Thị Thùy Trang
 
 Học phần: FIT4012 - Nhập môn An toàn bảo mật thông tin
@@ -233,9 +229,10 @@ Chúng tôi cam kết:
 - **Đối tượng:** Giảng viên và sinh viên lớp FIT4012
 
 **Thành viên:**
-- [Họ tên 1] - [MSSV]
-- [Họ tên 2] - [MSSV]
-- [Họ tên 3] - [MSSV]
+- Hồ Khăc Sơn
+- Tạ Công Sơn
+- Nguyễn Vũ Phương
+- Đinh Dương Phong 
 
 **Ngày:** 2026-04-28
 2. File threat-model.md:
