@@ -96,9 +96,11 @@ bcrypt: Output khác nhau mỗi lần nhờ SALT
 🗂️ Cấu trúc thư mục
 text
 CF04-password-hashing/
-├── index.html              # Trang demo chính
-├── style.css               # Giao diện CSS
-├── script.js               # Logic xử lý JavaScript
+
+├── demo/               # Bằng chứng demo
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
 ├── README.md               # Tài liệu hướng dẫn (file này)
 ├── slides/                 # Slide thuyết trình
 │   └── cyber-fortress-slides.pdf
@@ -106,7 +108,7 @@ CF04-password-hashing/
 │   ├── before-plaintext.png
 │   ├── after-hash.png
 │   ├── weak-password-test.png
-│   └── demo-recording.mp4
+│   └── demo-video.mp4
 ├── threat-model.md         # Phân tích mối đe dọa
 └── ethics-safe-use.md      # Cam kết đạo đức an toàn
 🛡️ Checklist phòng thủ
